@@ -5,14 +5,12 @@ export type CreateUserParams = {
   lastName: string;
   username: string;
   email: string;
-  profileImg: string;
-  coverImg: string;
+  photo: string;
 };
 
 export type UpdateUserParams = {
   firstName: string;
   lastName: string;
   username: string;
-  profileImg: string;
-  coverImg: string;
+  photo: string;
 };

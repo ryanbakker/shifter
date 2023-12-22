@@ -7,10 +7,6 @@ export const headerLinks = [
     label: "Create Meet",
     route: "/meets/create",
   },
-  {
-    label: "My Profile",
-    route: "/profile",
-  },
 ];
 
 export const showcaseImages = [

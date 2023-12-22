@@ -23,6 +23,9 @@ function NavItems() {
           </li>
         );
       })}
+      <li>
+        <Link href={`/id/profile`}>Profile</Link>
+      </li>
     </ul>
   );
 }
