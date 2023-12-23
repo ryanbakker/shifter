@@ -65,8 +65,8 @@ export const createOrder = async (order: CreateOrderParams) => {
   }
 };
 
-// GET ORDERS BY EVENT
-export async function getOrdersByEvent({
+// GET ORDERS BY MEET
+export async function getOrdersByMeet({
   searchString,
   meetId,
 }: GetOrdersByMeetParams) {
@@ -74,7 +74,7 @@ export async function getOrdersByEvent({
     await connectToDatabase();
 
     if (!meetId) throw new Error("Meet ID is required");
-    const eventObjectId = new ObjectId(meetId);
+    const meetObjectId = new ObjectId(meetId);
 
     const orders = await Order.aggregate([
       {
@@ -114,7 +114,7 @@ export async function getOrdersByEvent({
       {
         $match: {
           $and: [
-            { meetId: eventObjectId },
+            { meetId: meetObjectId },
             { buyer: { $regex: RegExp(searchString, "i") } },
           ],
         },

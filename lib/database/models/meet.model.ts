@@ -11,9 +11,14 @@ export interface IMeet extends Document {
   endDateTime: Date;
   price: string;
   isFree: boolean;
-  url?: string;
+  url: string;
   category: { _id: string; name: string };
-  organizer: { _id: string; firstName: string; lastName: string };
+  organizer: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    username: string;
+  };
 }
 
 const MeetSchema = new Schema({

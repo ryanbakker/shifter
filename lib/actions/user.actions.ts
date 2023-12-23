@@ -9,6 +9,7 @@ import { handleError } from "@/lib/utils";
 
 import { CreateUserParams, UpdateUserParams } from "@/types";
 import Meet from "../database/models/meet.model";
+import mongoose, { Types } from "mongoose";
 
 export async function createUser(user: CreateUserParams) {
   try {

@@ -8,7 +8,7 @@ function NavItems() {
   const pathname = usePathname();
 
   return (
-    <ul className="md:flex-between flex flex-col items-start gap-3 md:flex-row">
+    <ul className="md:flex-between flex flex-col items-center gap-3 mr-4 md:flex-row">
       {headerLinks.map((link) => {
         const isActive = pathname === link.route;
 
@@ -23,9 +23,6 @@ function NavItems() {
           </li>
         );
       })}
-      <li>
-        <Link href={`/id/profile`}>Profile</Link>
-      </li>
     </ul>
   );
 }

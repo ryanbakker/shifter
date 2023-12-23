@@ -66,6 +66,11 @@
   }
 }
 
+.filter-grey {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%)
+    hue-rotate(32deg) brightness(98%) contrast(92%);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -79,4 +84,47 @@
   .wrapper {
     @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
   }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .input-field {
+    @apply bg-gray-800 h-[54px] focus-visible:ring-offset-0 placeholder:text-gray-400 text-slate-200 rounded-md  px-4 py-3 border-none autofill:bg-gray-800 focus-visible:ring-transparent !important;
+  }
+
+  .textarea {
+    @apply bg-gray-800 flex flex-1 placeholder:text-gray-400 text-slate-200 px-4 py-3 rounded-md  !important;
+  }
+
+  .button {
+    @apply rounded-full h-[54px];
+  }
+
+  .meet-detail-wrapper {
+    @apply flex flex-col gap-2;
+  }
+
+  .meet-detail-wrapper h5 {
+    @apply font-light text-sm uppercase text-slate-400;
+  }
+
+  .meet-detail {
+    @apply flex flex-row items-center gap-3 bg-slate-900 w-fit py-2 px-3 rounded-md justify-center;
+  }
+
+  .meet-detail h6 {
+    @apply font-medium text-slate-300;
+  }
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-image: none !important;
+  @apply bg-gray-800 text-slate-200 !important;
 }

@@ -7,6 +7,10 @@ export const headerLinks = [
     label: "Create Meet",
     route: "/meets/create",
   },
+  {
+    label: "My Profile",
+    route: "/profile",
+  },
 ];
 
 export const showcaseImages = [
@@ -81,3 +85,16 @@ export const showcaseImages = [
     attributePath: "https://www.vecteezy.com/members/fatsaloon123161948",
   },
 ];
+
+export const meetDefaultValues = {
+  title: "",
+  description: "",
+  location: "",
+  imageUrl: "",
+  startDateTime: new Date(),
+  endDateTime: new Date(),
+  categoryId: "",
+  price: "",
+  isFree: false,
+  url: "",
+};

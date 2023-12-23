@@ -7,20 +7,20 @@ function Footer() {
   return (
     <footer className="flex flex-row w-full border-t border-gray-800 mt-16 bg-black">
       <div className="wrapper flex flex-row justify-between items-center">
-        <Logo />
+        <div className="flex flex-col gap-1 items-start">
+          <Logo />
+          <p className="text-slate-400 font-light text-xs">
+            2023. All rights reserved.
+          </p>
+        </div>
 
-        <ul className="md:flex-between flex flex-col items-start gap-3 md:flex-row">
-          {headerLinks.map((link) => {
-            return (
-              <li
-                key={link.route}
-                className="flex items-center justify-center whitespace-nowrap py-1.5 px-5 rounded-md"
-              >
-                <Link href={link.route}>{link.label}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <Link
+          href="https://github.com/ryanbakker/shifter"
+          target="_blank"
+          className="text-slate-200 hover:text-red-500 transition-all ease-in-out"
+        >
+          GitHub Repo
+        </Link>
       </div>
     </footer>
   );

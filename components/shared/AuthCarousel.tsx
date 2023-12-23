@@ -17,7 +17,7 @@ function AuthCarousel() {
   return (
     <div
       ref={emblaRef}
-      className="overflow-hidden cursor-pointer min-h-screen flex items-center justify-center md:max-w-[50%]"
+      className="overflow-hidden cursor-pointer min-h-screen flex items-center justify-center md:max-w-[50%] bg-white"
     >
       <div className="flex">
         {showcaseImages.map((image) => (
@@ -27,12 +27,16 @@ function AuthCarousel() {
               alt={image.name}
               width={1000}
               height={1000}
-              className=" object-cover object-center"
+              className="object-cover object-center"
             />
 
-            <div className="absolute -bottom-10 left-3 flex space-x-1 bg-white py-1 px-3 rounded-md shadow-md items-center hover:bg-slate-200 transition-all z-20">
+            <div className="absolute -bottom-10 left-3 flex space-x-1 bg-white py-1 px-3 rounded-md items-center hover:bg-slate-200 transition-all z-20">
               <User size={15} />
-              <Link href={image.attributePath} className="font-light text-xs">
+              <Link
+                href={image.attributePath}
+                className="font-light text-xs"
+                title="Check out the artist"
+              >
                 {image.attributeName}
               </Link>
             </div>

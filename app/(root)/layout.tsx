@@ -9,7 +9,9 @@ export default function RootLayout({
   return (
     <div className="flex h-screen flex-col">
       <main className="flex-1">
-        <Header />
+        <div className="bg-gradient-to-b from-black via-black to-transparent">
+          <Header />
+        </div>
         {children}
         <Footer />
       </main>
