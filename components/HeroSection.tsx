@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function HeroSection() {
   return (
-    <section className="py-16 md:py-24 min-h-screen relative overflow-hidden -z-10 -top-[69px]">
+    <section className="py-16 md:py-24 min-h-screen overflow-hidden -z-10 -top-[69px]">
       <Image
         src="/assets/images/heroBG.png"
         alt="hero background"
@@ -12,8 +12,8 @@ function HeroSection() {
         width={1000} // You can remove this line
         className="object-cover object-center w-full h-screen absolute top-0 left-0 -z-10 transform scale-x-[-1]"
       />
-      <div className="wrapper grid grid-cols-1 md:grid-cols-2 gap-5 2xl:gap-0 relative z-10">
-        <div className="flex flex-col justify-center gap-5 mt-12">
+      <div className="wrapper grid grid-cols-1 md:grid-cols-2 gap-5 2xl:gap-0 relative z-50">
+        <div className="flex flex-col justify-center gap-5">
           <h1 className="text-5xl font-extrabold max-w-[500px] text-slate-100">
             Grow your Connections, Engage with the Community
           </h1>
@@ -24,13 +24,13 @@ function HeroSection() {
             in one place – Shifter.
           </p>
 
-          <div className="mt-12 flex space-x-4">
+          <div className="mt-12 flex space-x-4 relative">
             <Button
               size="lg"
               asChild
               className="w-full sm:w-fit bg-red-500 hover:bg-red-700"
             >
-              <Link href="#meets" className=" scroll-smooth">
+              <Link href="#meets" className=" scroll-smooth z-50">
                 Explore Now
               </Link>
             </Button>

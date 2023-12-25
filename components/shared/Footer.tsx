@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="flex flex-row w-full border-t border-gray-800 mt-16 bg-black">
+    <footer className="flex flex-row w-full border-t border-gray-800 bg-black">
       <div className="wrapper flex flex-row justify-between items-center">
         <div className="flex flex-col gap-1 items-start">
           <Logo />

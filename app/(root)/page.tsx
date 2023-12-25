@@ -21,7 +21,7 @@ async function Home({ searchParams }: SearchParamProps) {
 
       <section
         id="meets"
-        className="bg-black mt-10 my-8 flex flex-col gap-8 md:gap-12"
+        className="bg-black my-8 flex flex-col gap-8 md:gap-12 pb-14"
       >
         <div className="wrapper">
           <h2 className="text-red-500 text-3xl underline underline-offset-[6px] pb-10 text-center">

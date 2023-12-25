@@ -24,8 +24,8 @@ export const DeleteConfirmation = ({ meetId }: { meetId: string }) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Trash2 size={20} color="red" />
+      <AlertDialogTrigger className="text-red-500 hover:text-red-500/50 transition-all">
+        <Trash2 size={20} />
       </AlertDialogTrigger>
 
       <AlertDialogContent className="bg-white">

@@ -1,5 +1,5 @@
 import { IMeet } from "@/lib/database/models/meet.model";
-import { formatDateTime } from "@/lib/utils";
+import { formatDateTime, formatTextToQuery } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import { ArrowUpRight, FileEdit } from "lucide-react";
 import Link from "next/link";
@@ -17,8 +17,10 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
 
   const isMeetCreator = userId === meet.organizer._id.toString();
 
+  const formattedCategory = formatTextToQuery(meet.category.name);
+
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-slate-900 shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
+    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-darkBlue shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link
         href={`/meets/${meet._id}`}
         style={{ backgroundImage: `url(${meet.imageUrl})` }}
@@ -27,8 +29,11 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
 
       {isMeetCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
-          <Link href={`/meets/${meet._id}/update`}>
-            <FileEdit size={20} color="black" />
+          <Link
+            href={`/meets/${meet._id}/update`}
+            className="text-black hover:text-black/50 transition-all"
+          >
+            <FileEdit size={20} />
           </Link>
 
           <DeleteConfirmation meetId={meet._id} />
@@ -47,9 +52,12 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
                 </span>
               )}
 
-              <p className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm">
+              <Link
+                href={`/search/q=${formattedCategory}`}
+                className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm hover:bg-gray-600 transition-all"
+              >
                 {meet.category.name}
-              </p>
+              </Link>
             </div>
           )}
           <p className="text-slate-400 text-sm">
@@ -64,9 +72,12 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
         </div>
 
         <div>
-          <p className="rounded-md w-fit bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1">
+          <Link
+            href={`/profile/${meet.organizer._id}`}
+            className="rounded-md w-fit bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 hover:bg-gray-600 transition-all"
+          >
             @{meet.organizer.username}
-          </p>
+          </Link>
 
           {hasOrderLink && (
             <Link href={`/orders?meetId=${meet._id}`} className="flex gap-2">
