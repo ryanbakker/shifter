@@ -50,7 +50,7 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
                 </span>
               )}
 
-              <p className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm hover:bg-gray-600 transition-all">
+              <p className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm">
                 {meet.category.name}
               </p>
             </div>
@@ -67,12 +67,9 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
         </div>
 
         <div className="flex flex-row justify-between items-end">
-          <Link
-            href={`/profile/${meet.organizer._id}`}
-            className="rounded-md w-fit bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 hover:bg-gray-600 transition-all"
-          >
+          <p className="rounded-md w-fit bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1">
             @{meet.organizer.username}
-          </Link>
+          </p>
 
           {hasOrderLink && (
             <Link

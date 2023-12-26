@@ -35,13 +35,13 @@ function Search({ placeholder = "Search title..." }: { placeholder?: string }) {
   }, [query, searchParams, router]);
 
   return (
-    <div className="flex items-center justify-center min-h-[54px] w-full overflow-hidden rounded-md bg-slate-700 px-4 py-2">
+    <div className="flex items-center justify-center min-h-[54px] w-full overflow-hidden rounded-md bg-darkBlue px-4 py-2">
       <SearchIcon size={24} stroke="white" />
       <Input
         type="text"
         placeholder={placeholder}
         onChange={(e) => setQuery(e.target.value)}
-        className="border-0 bg-slate-700 outline-offset-0 placeholder:text-gray-300 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-white"
+        className="border-0 bg-darkBlue outline-offset-0 placeholder:text-gray-300 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-white"
       />
     </div>
   );
