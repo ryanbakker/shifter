@@ -1,5 +1,7 @@
 import HeroSection from "@/components/HeroSection";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/Collection";
+import Search from "@/components/shared/Search";
 import { getAllMeets } from "@/lib/actions/meet.actions";
 import { SearchParamProps } from "@/types";
 
@@ -28,10 +30,9 @@ async function Home({ searchParams }: SearchParamProps) {
             Welcome to the scene
           </h2>
 
-          <div className="flex w-full flex-col gap-5 md:flex-row">
-            {/* Search */}
-
-            {/* Meet filter */}
+          <div className="flex w-full flex-col gap-5 md:flex-row items-center mb-12">
+            <Search />
+            <CategoryFilter />
           </div>
 
           <Collection

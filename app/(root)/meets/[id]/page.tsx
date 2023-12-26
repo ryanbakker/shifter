@@ -1,4 +1,4 @@
-import CheckoutButton from "@/components/shared/CheckoutButton";
+import Collection from "@/components/shared/Collection";
 import { DetailsDeleteBtn } from "@/components/shared/DetailsDeleteBtn";
 import MeetButtons from "@/components/shared/MeetButtons";
 import {
@@ -41,8 +41,6 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
 
   const hasURL = meet.url != "";
 
-  console.log("Meet Data => ", meet);
-
   return (
     <div className="bg-slate-950">
       {/* Meet Details */}
@@ -50,7 +48,7 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <Image
             src={meet.imageUrl}
-            alt="Event"
+            alt="Meet"
             width={1000}
             height={1000}
             className="h-full w-full object-cover object-center"
@@ -77,7 +75,7 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
               ) : (
                 <div className="flex flex-col gap-0.5 mt-4">
                   <h4 className="text-xs font-light text-gray-500">
-                    This is a paid event
+                    This is a paid meet
                   </h4>
                   <p className="mt-1 text-lg flex flex-row items-center gap-3 bg-slate-900 w-fit py-1 px-3 rounded-md justify-center">
                     ${meet.price}
@@ -110,8 +108,6 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
                   <h6>@{meet.organizer.username}</h6>
                 </Link>
               </div>
-
-              <CheckoutButton meet={meet} />
 
               <div className="meet-detail-wrapper">
                 <h5>Where to be</h5>
@@ -171,7 +167,19 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
       </section>
 
       {/* Similar Meets */}
-      <section></section>
+      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+        <h2 className="text-2xl font-bold">Related Meets</h2>
+
+        <Collection
+          data={relatedMeets?.data}
+          emptyTitle="No Meets Found"
+          emptyStateSubtext="Come back later"
+          collectionType="All_Meets"
+          limit={3}
+          page={searchParams.page as string}
+          totalPages={relatedMeets?.totalPages}
+        />
+      </section>
     </div>
   );
 }

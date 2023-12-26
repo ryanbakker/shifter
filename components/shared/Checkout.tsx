@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Button } from "../ui/button";
 import { checkoutOrder } from "@/lib/actions/order.actions";
 import { loadStripe } from "@stripe/stripe-js";
@@ -8,14 +8,21 @@ import { Heart } from "lucide-react";
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const Checkout = ({ meet, userId }: { meet: IMeet; userId: string }) => {
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get("success")) {
+      console.log("Order placed! You will receive an email confirmation.");
+    }
 
-  const handleButtonClick = async () => {
-    setLoading(true);
+    if (query.get("canceled")) {
+      console.log(
+        "Order canceled -- continue to shop around and checkout when you’re ready."
+      );
+    }
+  }, []);
 
-    // Add a delay (1 second in this case)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
+  const onCheckout = async () => {
     const order = {
       meetTitle: meet.title,
       meetId: meet._id,
@@ -25,24 +32,16 @@ const Checkout = ({ meet, userId }: { meet: IMeet; userId: string }) => {
     };
 
     await checkoutOrder(order);
-
-    // Reset loading state after submission
-    setLoading(false);
   };
 
   return (
-    <form onSubmit={handleButtonClick}>
+    <form action={onCheckout} method="post">
       <Button
         type="submit"
         role="link"
-        className={`rounded-md sm:w-fit py-5 px-6 ${
-          loading
-            ? "bg-red-500 text-white cursor-not-allowed"
-            : "bg-white text-red-500"
-        } flex flex-row gap-1.5 hover:bg-red-500 hover:text-white transition-all`}
-        disabled={loading}
+        className="flex flex-row gap-1.5 hover:bg-red-500 hover:text-white transition-all"
       >
-        {loading ? <Heart size={18} fill="white" /> : <Heart size={18} />} RSVP
+        <Heart size={18} /> RSVP
       </Button>
     </form>
   );
