@@ -107,6 +107,14 @@ function MeetForm({ userId, type, meet, meetId }: MeetFormProps) {
     }
   }
 
+  function onCancel() {
+    // Reset the form to its initial values
+    form.reset();
+
+    // Example: Navigate back to the previous page
+    router.back();
+  }
+
   return (
     <Form {...form}>
       <form
@@ -340,6 +348,7 @@ function MeetForm({ userId, type, meet, meetId }: MeetFormProps) {
             size="lg"
             className="w-full py-6 sm:py-5 sm:max-w-40 bg-gray-200 hover:bg-slate-300 text-slate-700  mt-4"
             disabled={form.formState.isSubmitting}
+            onClick={onCancel}
           >
             Cancel
           </Button>

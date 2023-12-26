@@ -71,7 +71,7 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
           </Link>
         </div>
 
-        <div>
+        <div className="flex flex-row justify-between items-end">
           <Link
             href={`/profile/${meet.organizer._id}`}
             className="rounded-md w-fit bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 hover:bg-gray-600 transition-all"
@@ -80,9 +80,12 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
           </Link>
 
           {hasOrderLink && (
-            <Link href={`/orders?meetId=${meet._id}`} className="flex gap-2">
-              <p className="text-red-500">Order Details</p>
-              <ArrowUpRight size={10} />
+            <Link
+              href={`/orders?meetId=${meet._id}`}
+              className="gap-2 bg-white w-fit flex items-center py-1 px-3 rounded-md mt-4 hover:bg-slate-300 transition-all line-clamp-1"
+            >
+              <p className="text-slate-900">Order Details</p>
+              <ArrowUpRight size={16} />
             </Link>
           )}
         </div>

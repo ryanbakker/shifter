@@ -1,3 +1,5 @@
+import CheckoutButton from "@/components/shared/CheckoutButton";
+import { DetailsDeleteBtn } from "@/components/shared/DetailsDeleteBtn";
 import MeetButtons from "@/components/shared/MeetButtons";
 import {
   getMeetById,
@@ -5,10 +7,12 @@ import {
 } from "@/lib/actions/meet.actions";
 import { formatDateTime, formatTextToQuery } from "@/lib/utils";
 import { SearchParamProps } from "@/types";
+import { auth } from "@clerk/nextjs";
 import {
   CalendarDays,
   CarFront,
   CircleUser,
+  FileEdit,
   Laptop,
   MapPin,
 } from "lucide-react";
@@ -17,7 +21,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function Meets({ params: { id }, searchParams }: SearchParamProps) {
+  const { sessionClaims } = auth();
+  const userId = sessionClaims?.userId as string;
+
   const meet = await getMeetById(id);
+  const isMeetCreator = userId === meet.organizer._id.toString();
 
   const relatedMeets = await getRelatedMeetsByCategory({
     categoryId: meet.category._id,
@@ -49,6 +57,19 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
           />
 
           <div className="flex w-full flex-col gap-8 p-5 md:p-10">
+            {isMeetCreator && (
+              <div className=" flex flex-row gap-4">
+                <Link
+                  href={`/meets/${meet._id}/update`}
+                  className="text-black bg-white py-2 px-4 rounded-md flex flex-row gap-2 items-center hover:bg-white/80 transition-all"
+                >
+                  <FileEdit size={20} /> Edit
+                </Link>
+
+                <DetailsDeleteBtn meetId={meet._id} />
+              </div>
+            )}
+
             <div>
               <h2 className="text-3xl font-bold pb-1">{meet.title}</h2>
               {meet.isFree ? (
@@ -90,7 +111,7 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
                 </Link>
               </div>
 
-              {/* Checkout Button */}
+              <CheckoutButton meet={meet} />
 
               <div className="meet-detail-wrapper">
                 <h5>Where to be</h5>
