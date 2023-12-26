@@ -39,123 +39,133 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
   const hasURL = meet.url != "";
 
   return (
-    <div className="bg-slate-950">
-      {/* Meet Details */}
-      <section className="text-white flex justify-center flex-col">
-        <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
-          <Image
-            src={meet.imageUrl}
-            alt="Meet"
-            width={1000}
-            height={1000}
-            className="h-full w-full object-cover object-center"
-          />
+    <>
+      <div className="bg-slate-950">
+        {/* Meet Details */}
+        <section className="text-white flex justify-center flex-col">
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
+            <Image
+              src={meet.imageUrl}
+              alt="Meet"
+              width={1000}
+              height={1000}
+              className="h-full w-full object-cover object-center"
+            />
 
-          <div className="flex w-full flex-col gap-8 p-5 md:p-10">
-            {isMeetCreator && (
-              <div className=" flex flex-row gap-4">
-                <Link
-                  href={`/meets/${meet._id}/update`}
-                  className="text-black bg-white py-2 px-4 rounded-md flex flex-row gap-2 items-center hover:bg-white/80 transition-all"
-                >
-                  <FileEdit size={20} /> Edit
-                </Link>
+            <div className="flex w-full flex-col gap-8 p-5 md:p-10">
+              {isMeetCreator && (
+                <div className=" flex flex-row gap-4">
+                  <Link
+                    href={`/meets/${meet._id}/update`}
+                    className="text-black bg-white py-2 px-4 rounded-md flex flex-row gap-2 items-center hover:bg-white/80 transition-all"
+                  >
+                    <FileEdit size={20} /> Edit
+                  </Link>
 
-                <DetailsDeleteBtn meetId={meet._id} />
-              </div>
-            )}
-
-            <div>
-              <h2 className="text-3xl font-bold pb-1">{meet.title}</h2>
-              {meet.isFree ? (
-                ""
-              ) : (
-                <div className="flex flex-col gap-0.5 mt-4">
-                  <h4 className="text-xs font-light text-gray-500">
-                    This is a paid meet
-                  </h4>
-                  <p className="mt-1 text-lg flex flex-row items-center gap-3 bg-slate-900 w-fit py-1 px-3 rounded-md justify-center">
-                    ${meet.price}
-                  </p>
+                  <DetailsDeleteBtn meetId={meet._id} />
                 </div>
               )}
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div className="meet-detail-wrapper">
-                <h5>Category</h5>
-                <div className="meet-detail hover:bg-slate-800 transition-all">
-                  <CarFront stroke={contentIconColor} size={contentIcons} />
-                  <p className="font-medium text-slate-300">
-                    {meet.category.name}
-                  </p>
+              <div>
+                <h2 className="text-3xl font-bold pb-1">{meet.title}</h2>
+                {meet.isFree ? (
+                  ""
+                ) : (
+                  <div className="flex flex-col gap-0.5 mt-4">
+                    <h4 className="text-xs font-light text-gray-500">
+                      This is a paid meet
+                    </h4>
+                    <p className="mt-1 text-lg flex flex-row items-center gap-3 bg-slate-900 w-fit py-1 px-3 rounded-md justify-center">
+                      ${meet.price}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="meet-detail-wrapper">
+                  <h5>Category</h5>
+                  <div className="meet-detail hover:bg-slate-800 transition-all">
+                    <CarFront stroke={contentIconColor} size={contentIcons} />
+                    <p className="font-medium text-slate-300">
+                      {meet.category.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="meet-detail-wrapper">
-                <h5>Created by</h5>
-                <Link
-                  href={`/profile/${meet.organizer._id}`}
-                  className="meet-detail hover:bg-slate-800 transition-all"
-                >
-                  <CircleUser stroke={contentIconColor} size={contentIcons} />
-                  <h6>@{meet.organizer.username}</h6>
-                </Link>
-              </div>
-
-              <div className="meet-detail-wrapper">
-                <h5>Where to be</h5>
-                <div className="meet-detail hover:bg-slate-800 transition-all">
-                  <MapPin stroke={contentIconColor} size={contentIcons} />
-                  <p className="font-medium text-slate-300">{meet.location}</p>
+                <div className="meet-detail-wrapper">
+                  <h5>Created by</h5>
+                  <Link
+                    href={`/profile/${meet.organizer._id}`}
+                    className="meet-detail hover:bg-slate-800 transition-all"
+                  >
+                    <CircleUser stroke={contentIconColor} size={contentIcons} />
+                    <h6>@{meet.organizer.username}</h6>
+                  </Link>
                 </div>
-              </div>
 
-              <div className="meet-detail-wrapper">
-                <h5>When to be there</h5>
-                <div className="meet-detail">
-                  <CalendarDays stroke={contentIconColor} size={contentIcons} />
-                  <div className="flex flex-col gap-0.5 flex-wrap">
-                    <h6>
-                      {formatDateTime(meet.startDateTime).dateOnly} -{" "}
-                      {formatDateTime(meet.startDateTime).timeOnly}
-                    </h6>
-                    <h6>
-                      {formatDateTime(meet.endDateTime).dateOnly} -{" "}
-                      {formatDateTime(meet.endDateTime).timeOnly}
-                    </h6>
+                <div className="meet-detail-wrapper">
+                  <h5>Where to be</h5>
+                  <div className="meet-detail hover:bg-slate-800 transition-all">
+                    <MapPin stroke={contentIconColor} size={contentIcons} />
+                    <p className="font-medium text-slate-300">
+                      {meet.location}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="meet-detail-wrapper">
+                  <h5>When to be there</h5>
+                  <div className="meet-detail">
+                    <CalendarDays
+                      stroke={contentIconColor}
+                      size={contentIcons}
+                    />
+                    <div className="flex flex-col gap-0.5 flex-wrap">
+                      <h6>
+                        {formatDateTime(meet.startDateTime).dateOnly} -{" "}
+                        {formatDateTime(meet.startDateTime).timeOnly}
+                      </h6>
+                      <h6>
+                        {formatDateTime(meet.endDateTime).dateOnly} -{" "}
+                        {formatDateTime(meet.endDateTime).timeOnly}
+                      </h6>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="meet-detail-wrapper mr-11">
-              <h5>What to Expect</h5>
-              <div className="meet-detail">
-                <p className="font-light">{meet.description}</p>
-              </div>
-            </div>
-
-            {hasURL && (
-              <div className="meet-detail-wrapper">
-                <h5>For more details</h5>
-                <div className="meet-detail hover:bg-slate-800 transition-all">
-                  <LinkIcon stroke={contentIconColor} size={contentIcons} />
-                  <Link href={meet.url} className="font-medium text-slate-300">
-                    {meet.url}
-                  </Link>
+              <div className="meet-detail-wrapper mr-11">
+                <h5>What to Expect</h5>
+                <div className="meet-detail">
+                  <p className="font-light">{meet.description}</p>
                 </div>
               </div>
-            )}
 
-            <MeetButtons meet={meet} />
+              {hasURL && (
+                <div className="meet-detail-wrapper">
+                  <h5>For more details</h5>
+                  <div className="meet-detail hover:bg-slate-800 transition-all">
+                    <LinkIcon stroke={contentIconColor} size={contentIcons} />
+                    <Link
+                      href={meet.url}
+                      className="font-medium text-slate-300"
+                    >
+                      {meet.url}
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              <MeetButtons meet={meet} />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Similar Meets */}
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
-        <h2 className="text-2xl font-bold">Related Meets</h2>
+        <h2 className="text-3xl font-bold text-white">Related Meets</h2>
 
         <Collection
           data={relatedMeets?.data}
@@ -167,7 +177,7 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
           totalPages={relatedMeets?.totalPages}
         />
       </section>
-    </div>
+    </>
   );
 }
 
