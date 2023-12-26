@@ -1,5 +1,5 @@
 import { IMeet } from "@/lib/database/models/meet.model";
-import { formatDateTime, formatTextToQuery } from "@/lib/utils";
+import { formatDateTime } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import { ArrowUpRight, FileEdit } from "lucide-react";
 import Link from "next/link";
@@ -16,8 +16,6 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
   const userId = sessionClaims?.userId as string;
 
   const isMeetCreator = userId === meet.organizer._id.toString();
-
-  const formattedCategory = formatTextToQuery(meet.category.name);
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-darkBlue shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
@@ -52,12 +50,9 @@ function Card({ meet, hasOrderLink, hidePrice }: CardProps) {
                 </span>
               )}
 
-              <Link
-                href={`/search/q=${formattedCategory}`}
-                className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm hover:bg-gray-600 transition-all"
-              >
+              <p className="max-w-[265px] rounded-md bg-gray-500/30 px-4 py-1 text-gray-300 line-clamp-1 text-sm hover:bg-gray-600 transition-all">
                 {meet.category.name}
-              </Link>
+              </p>
             </div>
           )}
           <p className="text-slate-400 text-sm">

@@ -5,7 +5,7 @@ import {
   getMeetById,
   getRelatedMeetsByCategory,
 } from "@/lib/actions/meet.actions";
-import { formatDateTime, formatTextToQuery } from "@/lib/utils";
+import { formatDateTime } from "@/lib/utils";
 import { SearchParamProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import {
@@ -35,9 +35,6 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
 
   const contentIcons = 26;
   const contentIconColor = "#cbd5e1";
-
-  const formattedCategory = formatTextToQuery(meet.category.name);
-  const formattedLocation = formatTextToQuery(meet.location);
 
   const hasURL = meet.url != "";
 
@@ -89,12 +86,9 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
                 <h5>Category</h5>
                 <div className="meet-detail hover:bg-slate-800 transition-all">
                   <CarFront stroke={contentIconColor} size={contentIcons} />
-                  <Link
-                    href={`/search/q=${formattedCategory}`}
-                    className="font-medium text-slate-300"
-                  >
+                  <p className="font-medium text-slate-300">
                     {meet.category.name}
-                  </Link>
+                  </p>
                 </div>
               </div>
 
@@ -113,14 +107,7 @@ async function Meets({ params: { id }, searchParams }: SearchParamProps) {
                 <h5>Where to be</h5>
                 <div className="meet-detail hover:bg-slate-800 transition-all">
                   <MapPin stroke={contentIconColor} size={contentIcons} />
-                  <Link
-                    href={`https://www.google.com/maps?q=${formattedLocation}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-slate-300"
-                  >
-                    {meet.location}
-                  </Link>
+                  <p className="font-medium text-slate-300">{meet.location}</p>
                 </div>
               </div>
 
